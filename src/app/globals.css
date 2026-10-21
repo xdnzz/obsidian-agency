@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-manrope);
+}
+
 :root {
   --background: #06070a;
   --foreground: #f8fafc;
@@ -25,4 +30,57 @@ body {
 
 .ambient-glow {
   animation: pulseGlow 8s ease-in-out infinite;
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+::view-transition-old(.page-fade) {
+  animation: 520ms cubic-bezier(0.4, 0, 1, 1) both page-fade-out;
+}
+
+::view-transition-new(.page-fade) {
+  animation: 520ms cubic-bezier(0, 0, 0.2, 1) both page-fade-in;
+}
+
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
 }
