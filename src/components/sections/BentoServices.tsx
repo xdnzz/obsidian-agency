@@ -5,8 +5,6 @@ import {
   Layers,
   Zap,
   Sparkles,
-  FileCode,
-  ArrowUpRight,
   ShieldCheck,
 } from 'lucide-react';
 import { Container } from '@/components/ui/Container';

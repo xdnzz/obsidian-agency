@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,21 +21,30 @@ function focusableIn(root: ParentNode | null) {
   );
 }
 
+function useIsClient() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
+
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [menuPath, setMenuPath] = useState(pathname);
+  const isClient = useIsClient();
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const restoreFocusRef = useRef(false);
   const initialPath = useRef<string | null>(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  if (pathname !== menuPath) {
+    setMenuPath(pathname);
+    setIsMobileMenuOpen(false);
+  }
 
   useEffect(() => {
-    setIsMobileMenuOpen(false);
     if (initialPath.current === null || initialPath.current === pathname) {
       initialPath.current = pathname;
       return;
@@ -186,7 +195,7 @@ export const Navbar: React.FC = () => {
         </nav>
       </div>
 
-      {isMounted
+      {isClient
         ? createPortal(
             <div
               id="mobile-menu"
