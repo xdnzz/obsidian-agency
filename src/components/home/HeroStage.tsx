@@ -11,14 +11,14 @@ export function HeroStage({
   children: ReactNode;
 }) {
   return (
-    <div className="relative h-dvh overflow-hidden bg-black">
+    <div className="relative min-h-dvh bg-black lg:h-dvh lg:overflow-hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{ backgroundColor: '#000', backgroundImage: background }}
       />
       <ParticleField />
-      <div className="absolute inset-0 lg:hidden">{mobile}</div>
+      <div className="relative z-10 lg:hidden">{mobile}</div>
       <div
         className="absolute top-1/2 left-1/2 hidden h-[900px] w-[1440px] origin-center lg:block"
         style={{

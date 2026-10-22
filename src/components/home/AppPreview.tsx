@@ -86,7 +86,7 @@ function SheetPreview() {
   const [featured, ...rest] = gradients;
 
   return (
-    <div className="w-full rounded-[28px] border border-white/80 bg-black/75 p-4">
+    <div aria-hidden="true" className="w-full rounded-[28px] border border-white/80 bg-black/75 p-4">
       <div className="flex items-center gap-2">
         <Mark id="preview-sheet-mark" size={16} />
         <p className="text-sm leading-none font-semibold text-white">Obsidian</p>
@@ -117,7 +117,10 @@ export function AppPreview({
   }[placement];
 
   return (
-    <div className={`${frame} flex h-[850px] items-center justify-center rounded-3xl border border-white/80 p-6`}>
+    <div
+      aria-hidden="true"
+      className={`${frame} flex h-[850px] items-center justify-center rounded-3xl border border-white/80 p-6`}
+    >
       <div className="flex h-full w-full items-start overflow-hidden rounded-lg bg-white/[0.04]">
         <aside className="flex h-full w-[251px] shrink-0 flex-col gap-8 overflow-hidden border-r border-white/10 bg-black/30 px-6 py-8">
           <div className="flex items-center gap-2.5">

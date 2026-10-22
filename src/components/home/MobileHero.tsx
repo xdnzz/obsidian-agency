@@ -22,9 +22,9 @@ export function MobileHero({
   showDemo?: boolean;
 }) {
   return (
-    <div className="flex h-full flex-col px-5 pt-24 pb-0">
+    <div className="flex min-h-dvh flex-col px-5 pt-24 pb-8">
       <div
-        className={`flex min-h-0 flex-1 flex-col justify-center gap-5 ${centered ? 'items-center text-center' : 'items-start'}`}
+        className={`flex flex-1 flex-col justify-center gap-5 ${centered ? 'items-center text-center' : 'items-start'}`}
       >
         <h1 className="font-display bg-[linear-gradient(189deg,#ffffff_22%,#c9c9c9_84%)] bg-clip-text text-[2.7rem] leading-[0.92] font-semibold tracking-[-0.045em] text-transparent sm:text-5xl">
           {title}

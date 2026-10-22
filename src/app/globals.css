@@ -84,3 +84,46 @@ body {
     animation-delay: 0s !important;
   }
 }
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 200;
+  transform: translateY(-200%);
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+#main:focus,
+#main:focus-visible {
+  outline: none;
+}
+
+@media (forced-colors: active) {
+  .bg-clip-text {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    color: CanvasText !important;
+    -webkit-text-fill-color: CanvasText !important;
+  }
+
+  :focus-visible {
+    outline-color: CanvasText;
+  }
+}

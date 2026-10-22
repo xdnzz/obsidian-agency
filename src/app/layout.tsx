@@ -20,11 +20,13 @@ export const viewport: Viewport = {
   themeColor: '#06070a',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export const metadata: Metadata = {
-  title: 'Obsidian Studio | Next-Gen Digital Craft & Engineering',
+  title: {
+    default: 'Obsidian Studio | Next-Gen Digital Craft & Engineering',
+    template: '%s · Obsidian Studio',
+  },
   description:
     'Bespoke digital design agency and frontend engineering studio crafting pixel-perfect web products with radiant precision.',
   keywords: [
@@ -66,9 +68,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" data-scroll-behavior="smooth">
       <body className={`${inter.variable} ${manrope.variable} font-sans bg-black text-slate-100 antialiased`}>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <ViewTransitionGuard />
         <Navbar />
-        {children}
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
       </body>
     </html>
   );
