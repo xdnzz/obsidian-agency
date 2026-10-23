@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
-import { PlaceholderPage } from '@/components/site/PlaceholderPage';
+import { StudioPage } from '@/components/home/StudioPage';
 
 export const metadata: Metadata = {
   title: 'Get started',
 };
 
 export default function GetStartedPage() {
-  return <PlaceholderPage title="Get started" />;
+  return (
+    <StudioPage
+      eyebrow="Get started"
+      title="Copy your first gradient."
+      lede="Choose a collection. It lands on a screen, a card, and a phone. Copy the CSS, the colors, or a class you can paste."
+    />
+  );
 }

@@ -1,43 +1,11 @@
 import { Download, Gift, Plus, Sparkles, SwatchBook } from 'lucide-react';
+import { collections } from '@/lib/collections';
 
 const nav = [
   { label: 'Library', icon: Sparkles, active: true },
   { label: 'Freebies', icon: Gift, active: false },
   { label: 'Collections', icon: SwatchBook, active: false },
   { label: 'Downloads', icon: Download, active: false },
-];
-
-const gradients = [
-  {
-    name: 'Freebies',
-    background:
-      'radial-gradient(90% 85% at 8% 100%, #ffe9c5 0%, #f0d2be 14%, #c9a4c4 26%, #7c43b5 44%, #5012b0 58%, #14032c 72%, #000 86%)',
-  },
-  {
-    name: 'Soloprenuers',
-    background:
-      'radial-gradient(120% 46% at 50% -12%, rgba(124,67,181,0.9) 0%, rgba(80,12,176,0.45) 32%, transparent 64%), radial-gradient(140% 70% at 50% 120%, #e7c6ea 0%, #7c43b5 28%, #5012b0 48%, #000 72%)',
-  },
-  {
-    name: 'Conversions',
-    background:
-      'radial-gradient(80% 80% at 0% 20%, #a881cc 0%, #7c47be 28%, #5012b0 48%, #000 72%)',
-  },
-  {
-    name: 'Downloads',
-    background:
-      'radial-gradient(90% 90% at 100% 80%, #fff6e8 0%, #d3bcda 12%, #a881cc 28%, #5012b0 52%, #000 74%)',
-  },
-  {
-    name: 'Love & coffee',
-    background:
-      'radial-gradient(80% 75% at 0% 110%, #fff6e8 0%, #d3bcda 14%, #7c47be 36%, #5012b0 56%, #000 78%)',
-  },
-  {
-    name: 'AI startups',
-    background:
-      'radial-gradient(90% 70% at 50% 0%, rgba(140,50,210,0.95) 0%, rgba(80,12,176,0.55) 36%, #000 72%)',
-  },
 ];
 
 function Mark({ id, size = 20 }: { id: string; size?: number }) {
@@ -83,7 +51,7 @@ function Swatch({
 }
 
 function SheetPreview() {
-  const [featured, ...rest] = gradients;
+  const [featured, ...rest] = collections;
 
   return (
     <div aria-hidden="true" className="w-full rounded-[28px] border border-white/80 bg-black/75 p-4">
@@ -108,7 +76,7 @@ export function AppPreview({
 }) {
   if (placement === 'sheet') return <SheetPreview />;
 
-  const [featured, ...rest] = gradients;
+  const [featured, ...rest] = collections;
 
   const frame = {
     side: 'absolute top-[157px] left-[693px] w-[1154px] bg-black/80',

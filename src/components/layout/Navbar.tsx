@@ -29,11 +29,23 @@ function useIsClient() {
   );
 }
 
+function useScrolled() {
+  return useSyncExternalStore(
+    (onStoreChange) => {
+      window.addEventListener('scroll', onStoreChange, { passive: true });
+      return () => window.removeEventListener('scroll', onStoreChange);
+    },
+    () => window.scrollY > 12,
+    () => false,
+  );
+}
+
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
   const isClient = useIsClient();
+  const scrolled = useScrolled();
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const restoreFocusRef = useRef(false);
@@ -119,7 +131,9 @@ export const Navbar: React.FC = () => {
   return (
     <header
       ref={headerRef}
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:px-6"
+      className={`pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 transition-colors sm:px-6 ${
+        scrolled ? 'border-b border-white/10 bg-black pb-4' : ''
+      }`}
       style={{ viewTransitionName: 'site-header' }}
     >
       <div className="pointer-events-auto relative z-50 w-full max-w-[1170px]">

@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
-import { PlaceholderPage } from '@/components/site/PlaceholderPage';
+import { StudioPage } from '@/components/home/StudioPage';
 
 export const metadata: Metadata = {
-  title: 'View demo',
+  title: 'Demo',
 };
 
 export default function DemoPage() {
-  return <PlaceholderPage title="View demo" />;
+  return (
+    <StudioPage
+      eyebrow="Demo"
+      title="One gradient, three surfaces."
+      lede="Switch collections and watch the same palette move from the background onto a screen, a card, and a phone."
+    />
+  );
 }
