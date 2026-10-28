@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CollectionDossier } from '@/components/collection/CollectionDossier';
 import { LoveCoffeeScreen } from '@/components/home/LoveCoffeeScreen';
 
 export const metadata: Metadata = {
@@ -6,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function LoveCoffeePage() {
-  return <LoveCoffeeScreen />;
+  return (
+    <>
+      <LoveCoffeeScreen />
+      <CollectionDossier slug="love-coffee" />
+    </>
+  );
 }

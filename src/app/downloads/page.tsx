@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CollectionDossier } from '@/components/collection/CollectionDossier';
 import { DownloadsScreen } from '@/components/home/DownloadsScreen';
 
 export const metadata: Metadata = {
@@ -6,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function DownloadsPage() {
-  return <DownloadsScreen />;
+  return (
+    <>
+      <DownloadsScreen />
+      <CollectionDossier slug="downloads" />
+    </>
+  );
 }

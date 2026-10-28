@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CollectionDossier } from '@/components/collection/CollectionDossier';
 import { ConversionsScreen } from '@/components/home/ConversionsScreen';
 
 export const metadata: Metadata = {
@@ -6,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function ConversionsPage() {
-  return <ConversionsScreen />;
+  return (
+    <>
+      <ConversionsScreen />
+      <CollectionDossier slug="conversions" />
+    </>
+  );
 }

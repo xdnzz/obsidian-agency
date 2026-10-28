@@ -2,12 +2,14 @@ import Link from 'next/link';
 import { AppPreview } from '@/components/home/AppPreview';
 import { HeroStage } from '@/components/home/HeroStage';
 import { MobileHero } from '@/components/home/MobileHero';
+import { ScrollCue } from '@/components/motion/ScrollCue';
 
 const homeBackground =
   'radial-gradient(90% 85% at 8% 100%, #ffe9c5 0%, #f0d2be 14%, #c9a4c4 26%, #7c43b5 44%, #5012b0 58%, #14032c 72%, #000 86%)';
 
 export function HomeScreen() {
   return (
+    <div className="relative">
     <HeroStage
       background={homeBackground}
       mobile={
@@ -34,5 +36,7 @@ export function HomeScreen() {
       </div>
       <AppPreview />
     </HeroStage>
+    <ScrollCue />
+    </div>
   );
 }

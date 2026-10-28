@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { LibraryGrid } from '@/components/collection/LibraryGrid';
 import { FaqList } from '@/components/home/FaqList';
 import { Studio } from '@/components/home/Studio';
+import { SiteFooter } from '@/components/layout/SiteFooter';
+import { GradientJourney } from '@/components/motion/GradientJourney';
+import { Reveal } from '@/components/motion/Reveal';
 import { collections } from '@/lib/collections';
 
 const pains = [
@@ -43,7 +47,7 @@ const questions = [
   },
   {
     q: 'Where should I start?',
-    a: 'Freebies. It is the home collection. The menu leads to the other five when you need a different mood.',
+    a: 'Freebies. It is the home collection. The library holds the other five when the page needs a different mood.',
   },
   {
     q: 'Why are the collections separate pages?',
@@ -59,7 +63,7 @@ const questions = [
   },
   {
     q: 'Can I just look around?',
-    a: 'Yes. Every collection in the menu is a real page. Nothing in the library asks you to sign in before you can see it.',
+    a: 'Yes. Every collection in the library is a real page. Nothing asks you to sign in before you can see it.',
   },
 ];
 
@@ -88,19 +92,23 @@ export function LandingStory() {
         </div>
       </div>
 
+      <GradientJourney />
+
       <section className="mx-auto max-w-6xl px-5 py-24 sm:px-8" aria-labelledby="problem-title">
-        <div className="reveal">
+        <Reveal>
           <Eyebrow>The usual way</Eyebrow>
           <h2 id="problem-title" className="font-display mt-4 max-w-2xl text-4xl leading-none font-semibold tracking-[-0.04em] sm:text-5xl">
             Stop collecting gradients that do not belong together.
           </h2>
-        </div>
-        <div className="reveal-stagger mt-12 grid gap-4 md:grid-cols-3">
-          {pains.map((pain) => (
-            <article key={pain.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-              <h3 className="font-display text-xl font-semibold tracking-[-0.03em]">{pain.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-white/70">{pain.body}</p>
-            </article>
+        </Reveal>
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {pains.map((pain, index) => (
+            <Reveal key={pain.title} delay={index * 80}>
+              <article className="h-full rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+                <h3 className="font-display text-xl font-semibold tracking-[-0.03em]">{pain.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/70">{pain.body}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -114,7 +122,7 @@ export function LandingStory() {
               'radial-gradient(circle, #c9a4c4 0%, #7c43b5 38%, #5012b0 62%, transparent 72%)',
           }}
         />
-        <div className="reveal relative mx-auto max-w-4xl px-5 py-28 sm:px-8 sm:py-36">
+        <Reveal className="relative mx-auto max-w-4xl px-5 py-28 sm:px-8 sm:py-36">
           <Eyebrow>One palette</Eyebrow>
           <h2
             id="manifesto-title"
@@ -125,32 +133,48 @@ export function LandingStory() {
           <p className="mt-6 max-w-xl text-base leading-7 text-white/70">
             Freebies, Soloprenuers, AI startups, Conversions, Downloads, and Love & coffee are the same family, seen from six rooms.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section id="how-it-works" className="scroll-mt-28 border-y border-white/10" aria-labelledby="steps-title">
         <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
-          <div className="reveal">
+          <Reveal>
             <Eyebrow>How it works</Eyebrow>
             <h2 id="steps-title" className="font-display mt-4 max-w-xl text-4xl leading-none font-semibold tracking-[-0.04em] sm:text-5xl">
               Three steps, then you are in the design.
             </h2>
-          </div>
-          <ol className="reveal-stagger mt-12 grid gap-10 md:grid-cols-3">
-            {steps.map((step) => (
-              <li key={step.number}>
-                <p className="font-display text-sm font-semibold text-white/40">{step.number}</p>
-                <h3 className="font-display mt-3 text-2xl font-semibold tracking-[-0.03em]">{step.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-white/70">{step.body}</p>
-              </li>
+          </Reveal>
+          <ol className="mt-12 grid gap-10 md:grid-cols-3">
+            {steps.map((step, index) => (
+              <Reveal key={step.number} delay={index * 90}>
+                <li>
+                  <p className="font-display text-sm font-semibold text-white/40">{step.number}</p>
+                  <h3 className="font-display mt-3 text-2xl font-semibold tracking-[-0.03em]">{step.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/70">{step.body}</p>
+                </li>
+              </Reveal>
             ))}
           </ol>
         </div>
       </section>
 
+      <section id="library" className="scroll-mt-28" aria-labelledby="library-title">
+        <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
+          <Reveal>
+            <Eyebrow>The library</Eyebrow>
+            <h2 id="library-title" className="font-display mt-4 max-w-2xl text-4xl leading-none font-semibold tracking-[-0.04em] sm:text-5xl">
+              Open a room before you copy it.
+            </h2>
+          </Reveal>
+          <div className="mt-12">
+            <LibraryGrid />
+          </div>
+        </div>
+      </section>
+
       <section id="studio" className="scroll-mt-28" aria-labelledby="studio-title">
         <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
-          <div className="reveal">
+          <Reveal>
             <Eyebrow>The studio</Eyebrow>
             <h2 id="studio-title" className="font-display mt-4 max-w-2xl text-4xl leading-none font-semibold tracking-[-0.04em] sm:text-5xl">
               Wear one gradient three ways.
@@ -158,8 +182,11 @@ export function LandingStory() {
             <p className="mt-5 max-w-xl text-base leading-7 text-white/70">
               Pick a collection. The background, the screen, the card, and the phone change together. Then copy the gradient.
             </p>
-          </div>
+          </Reveal>
           <Studio className="mt-12" />
+          <Link href="/generate" className="mt-6 inline-flex h-12 items-center rounded-full border border-white/20 px-6 text-sm font-semibold">
+            Generate your own
+          </Link>
         </div>
       </section>
 
@@ -209,27 +236,7 @@ export function LandingStory() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-10 sm:px-8 md:flex-row md:items-start md:justify-between">
-          <div>
-            <p className="text-sm font-semibold">Obsidian Studio</p>
-            <p className="mt-2 max-w-xs text-sm leading-6 text-white/50">A curated collection of gradients.</p>
-          </div>
-          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm text-white/70">
-            {collections.slice(1).map((collection) => (
-              <Link key={collection.name} href={collection.href} className="hover:text-white">
-                {collection.name}
-              </Link>
-            ))}
-            <Link href="/get-started" className="hover:text-white">
-              Get started
-            </Link>
-            <Link href="/demo" className="hover:text-white">
-              View demo
-            </Link>
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

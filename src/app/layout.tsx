@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Manrope } from 'next/font/google';
 import { Navbar } from '@/components/layout/Navbar';
 import { ViewTransitionGuard } from '@/components/layout/ViewTransitionGuard';
+import { ScrollProgress } from '@/components/motion/ScrollProgress';
 import './globals.css';
 
 const inter = Inter({
@@ -72,6 +73,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <ViewTransitionGuard />
+        <ScrollProgress />
         <Navbar />
         <main id="main" tabIndex={-1}>
           {children}
